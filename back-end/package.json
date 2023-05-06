@@ -1,0 +1,22 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "Node.js back-end",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "service",
+    "node",
+    "mqtt",
+    "backend"
+  ],
+  "author": "Lucas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mosca": "^0.6.0"
+  }
+}
