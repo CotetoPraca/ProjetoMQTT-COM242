@@ -1,11 +1,11 @@
 # ProjetoMQTT-COM242
-Conexão MQTT com Web Service
+
+O projeto ainda não possui front-end, apenas o back-end
 
 ## Execução
 
 - Baixar o arquivo
-- Salvar o arquivo em um diretório (Ex.: Projeto)
-- Entrar no diretório raiz do projeto
+- Abrir o diretório raiz do projeto (back-end)
 - Executar `npm install`
 - Executar `node app.js`
 
