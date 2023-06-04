@@ -22,25 +22,17 @@ function start() {
 
     console.log(`Mensagem recebida no tópico ${topic}: ${message}`);
 
-    // Checa se o topic possui um serviço mapeado para si
+    // Checa se o tópico possui um serviço mapeado para si
     if (topicMapping.hasOwnProperty(topic)) {
       const serviceName = topicMapping[topic];
       const service = inventoryController.getServiceByName(serviceName);
 
       if (service) {
-        //Importa o serviço dinamicamente usando o require()
-        const serviceModule = require(`../service-inventory/${serviceName}`);
-        const serviceFunction = serviceModule[service.handler];
+        // Chama a função principal do serviço correspondente
+        const result = service.handler(message);
 
-        if (typeof serviceFunction === 'function') {
-          // Chama a função principal do serviço correspondente
-          const result = serviceFunction(message);
-
-          // Salva o resultado no arquivo de logs
-          inventoryController.getServiceByName('log-save-results').handler(logFilePath, result, maxResults);
-        } else {
-          console.log(`A funçao ${service.handler} no serviço ${serviceName} não foi encontrada`);
-        }
+        // Salva o resultado no arquivo de logs
+        inventoryController.getServiceByName('log-save-results').handler(logFilePath, result, maxResults);
       } else {
         console.log(`O serviço ${topicMapping[topic]} mapeado para o tópico ${topic} não foi encontrado`);
       }
