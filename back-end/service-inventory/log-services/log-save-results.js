@@ -13,8 +13,18 @@ const fs = require('fs');
 function saveResultToLog(logFilePath, data, maxResults = 0) {
   const logEntry = `${new Date().toISOString()}: ${data}\n`;
 
+  // Extrai o diretório do caminho do arquivo
+  const directory = path.dirname(logFilePath);
+
+  // Verifica se o diretório existe
+  if (!fs.existsSync(directory)) {
+    console.log(`O diretório ${directory} não existe.`);
+    return; // Sai da função se o diretório não existir
+  }
+
   // Adiciona o log ao arquivo de log usando o método appendFile
-  fs.appendFile(logFilePath, logEntry, (err) => {
+  // O arquivo é criado caso não exista com a opção append (flag: 'a')
+  fs.appendFile(logFilePath, logEntry, { flag: 'a' }, (err) => {
     if (err) {
       console.log(`Erro ao adicionar entrada de log ao arquivo ${logFilePath}: ${err}`);
     } else {
