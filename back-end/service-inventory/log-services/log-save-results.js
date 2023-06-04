@@ -7,6 +7,7 @@
 **/
 const inventoryController = require('../controllers/inventory-controller');
 const fs = require('fs');
+const path = require('path');
 
 // Função principal do serviço
 // Recebe endereço do arquivo de log e a mensagem a ser salvo nele
