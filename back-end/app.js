@@ -6,6 +6,16 @@ const inventoryController = require('./service-inventory/controllers/inventory-c
 // Middleware para fazer o parsing do corpo das requisições como JSON
 app.use(express.json());
 
+// Carrega os serviços manualmente
+const servicesToLoad = [
+  require('./service-inventory/auth-services/auth-user'),
+  require('./service-inventory/log-services/log-clear-results'),
+  require('./service-inventory/log-services/log-get-results'),
+  require('./service-inventory/log-services/log-open-space'),
+  require('./service-inventory/log-services/log-save-results'),
+  require('./service-inventory/template-services/hello-world')
+];
+
 // Configuração do servidor MQTT
 mqttServer.start();
 
