@@ -4,7 +4,7 @@
  * Esse primeiro bloco de comentário deve ser substituído com uma descrição detalhada do serviço. Por exemplo:
  * Esse é um arquivo de referência, não possui funcionalidade prática. Serve apenas de guia.
 **/
-const inventoryController = require('./controllers/inventory-controller');
+const inventoryController = require('../controllers/inventory-controller');
 
 // Função principal do serviço
 // Breve descrição dos parâmetros esperados e funcionalidade

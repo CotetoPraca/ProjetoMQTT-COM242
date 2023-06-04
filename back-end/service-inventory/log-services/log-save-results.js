@@ -5,7 +5,7 @@
  * A verificação e liberação de linhas no arquivo é tratado por outro serviço.
  * A informação é salva junto do seu timestamp de registro no final do arquivo.
 **/
-const inventoryController = require('./controllers/inventory-controller');
+const inventoryController = require('../controllers/inventory-controller');
 const fs = require('fs');
 
 // Função principal do serviço

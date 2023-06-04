@@ -4,7 +4,7 @@
  * Caso a autenticação seja bem-sucedida, retorna um token de autenticação.
  * Nota: Foi usado valores fixos por queustões didáticas.
 **/
-const inventoryController = require('./controllers/inventory-controller');
+const inventoryController = require('../controllers/inventory-controller');
 
 // Valores fixos de login e senha
 const loginFixo = 'admin';

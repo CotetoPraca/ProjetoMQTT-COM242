@@ -5,7 +5,7 @@
  * (o log mais antigo) até que atinja o tamanho máximo.
  * Se o valor limitante for 0 ou negativo significa que não há limitação, tornando a função desnecessária.
 **/
-const inventoryController = require('./controllers/inventory-controller');
+const inventoryController = require('../controllers/inventory-controller');
 const fs = require('fs');
 
 // Função principal do serviço

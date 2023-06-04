@@ -2,7 +2,7 @@
  * Esse serviço serve para retornar todos os registros salvos em um arquivo de logs.
  * Recebe como parâmetro apenas o endereço do arquivo a ser lido.
 **/
-const inventoryController = require('./controllers/inventory-controller');
+const inventoryController = require('../controllers/inventory-controller');
 const fs = require('fs');
 
 // Função principal do serviço
