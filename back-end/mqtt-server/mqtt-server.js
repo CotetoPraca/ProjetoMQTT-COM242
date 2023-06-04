@@ -1,6 +1,8 @@
 const mosca = require('mosca');
 const inventoryController = require('../service-inventory/controllers/inventory-controller');
 
+const path = require('path');
+
 // Mapeamento de tópicos para serviços
 const topicMapping = {
   "teste": "hello-world"
@@ -8,7 +10,7 @@ const topicMapping = {
 };
 
 // Configurações para a retenção de histórico.
-const logFilePath = '../logs/mqtt-server-logs/mqtt-results.log' // Caminho padrão para o arquivo de logs do servidor MQTT
+const logFilePath = path.join(__dirname, '../logs/mqtt-server-logs/mqtt-results.log'); // Caminho padrão para o arquivo de logs do servidor MQTT
 const maxResults = 50; // Manter no máximo 50 resultados.
 
 function start() {
