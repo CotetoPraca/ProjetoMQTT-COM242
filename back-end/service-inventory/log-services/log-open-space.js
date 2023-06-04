@@ -27,18 +27,21 @@ function openLogSpace(logFilePath, maxResults = 0) {
   // Separa as linhas do arquivo em um array
   const lines = data.split('\n');
 
-  // Remove repetidamente a primeira linha até que o tamanho máximo seja alcançado
-  while (lines.length > maxResults) {
-    lines.shift(); // Remove a primeira linha
+  // Verifica se o tamanho máximo foi ultrapassado
+  if (lines.length > maxResults) {
+    // Remove repetidamente a primeira linha até que o tamanho máximo seja alcançado
+    while (lines.length > maxResults) {
+      lines.shift(); // Remove a primeira linha
+    }
+
+    console.log(`Espaço aberto no arquivo de log: ${logFilePath}`);
   }
-  
+
   // Atualiza a variável 'newData' com o conteúdo atualizado
   const newData = lines.join('\n');
 
   // Escreve o conteúdo atualizado de volta no arquivo de logs
   fs.writeFileSync(logFilePath, newData, 'utf8');
-
-  console.log(`Espaço aberto no arquivo de log: ${logFilePath}`);
 }
 
 // Adiciona o serviço ao repositório
