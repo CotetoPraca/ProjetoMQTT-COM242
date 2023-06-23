@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<style> 
+body {
+  background-color: #ced2cc;
+  background-image: url('https://cdn.icon-icons.com/icons2/1174/PNG/512/1489437040-house2_81908.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 20%;
+}
+
+.container {
+  text-align: center;
+  margin-top: 20%;
+}
+
+h1 {
+  font-family: "Boulder", sans-serif;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 2px;
+}
+</style>
+<head>
+  <title>Monitoramento Predial</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Serviço de monitoramento predial</h1>
+    
+    <button id="serviceButton">Ver todos os serviços</button>
+    <button id="hello-world">Hello World</button>
+
+    <div id="content"></div> <!-- Container para carregar o conteúdo da página hello-world -->
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    // Manipulador de evento para o botão
+    document.getElementById('serviceButton').addEventListener('click', function() {
+      window.location.href = '/services?token=' + token;
+    });
+    document.getElementById('hello-world').addEventListener('click', function() {
+      window.location.href = '/hello-world-page?token=' + token;
+    });
+
+
+  </script>
+</body>
+</html>

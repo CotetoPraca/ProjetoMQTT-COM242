@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<style> 
+body {
+  background-color: #ced2cc;
+  background-image: url('https://cdn.icon-icons.com/icons2/1174/PNG/512/1489437040-house2_81908.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 20%;
+}
+
+.container {
+  text-align: center;
+  margin-top: 20%;
+}
+
+h1 {
+  font-family: "Boulder", sans-serif;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 2px;
+}
+</style>
+<head>
+  <title>Monitoramento Predial</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Serviço de monitoramento predial</h1>
+    
+    <button id="serviceButton">Ver tudo</button>
+    <button id="hello-world">Hello World</button>
+    <button id="clean-logs">Limpar Histórico</button>
+    <button id="history">Resultados</button>
+    <span id="clear"></span>
+
+  <script>
+    const token = localStorage.getItem('token');
+    // Manipulador de evento para o botão
+    document.getElementById('serviceButton').addEventListener('click', function() {
+      window.location.href = '/services?token=' + token;
+    });
+    document.getElementById('hello-world').addEventListener('click', function() {
+      window.location.href = '/hello-world-page?token=' + token;
+    });
+
+    document.getElementById('clean-logs').addEventListener('click', function() {
+      fetchClearLogs();
+    });
+
+    document.getElementById('history').addEventListener('click', function() {
+      window.location.href = '/mqtt/history-page?token=' + token;
+    });
+
+    function fetchClearLogs() {
+      fetch('/mqtt/history-cleanup?token=' + token)
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById("clear").innerHTML = `<p>${result}</p>`;
+        })
+        setTimeout(() => {
+          document.getElementById("clear").innerHTML = '';
+        }, 4200);
+    }
+
+
+  </script>
+</body>
+</html>

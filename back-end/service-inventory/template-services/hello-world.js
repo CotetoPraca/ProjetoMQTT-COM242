@@ -8,6 +8,7 @@ const inventoryController = require('../controllers/inventory-controller');
 // Serviço de testes, não possui funcionalidade prática
 function helloWorld() {
   console.log("Hello World");
+  return "Hello World"; // Retornar a mensagem como resultado da chamada
 }
 
 // Adiciona o serviço ao repositório

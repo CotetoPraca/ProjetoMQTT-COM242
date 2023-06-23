@@ -14,7 +14,7 @@ function getAllResults(logFilePath) {
     return logContent;
   } catch (err) {
     console.log(`Erro ao ler o arquivo de log ${logFilePath}: ${err}`);
-    return null;
+    return "Erro ao ler o arquivo";
   }
 }
 

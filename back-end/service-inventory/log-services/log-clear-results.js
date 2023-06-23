@@ -11,9 +11,13 @@ function clearAllResults(logFilePath) {
   try {
     // Limpa o conteúdo do arquivo de log
     fs.writeFileSync(logFilePath, '');
-    console.log(`Arquivo de log ${logFilePath} limpo`);
+    const result = `Arquivo de log ${logFilePath} limpo`;
+    console.log(result);
+    return result;
   } catch (err) {
-    console.log(`Erro ao limpar o arquivo de log ${logFilePath}: ${err}`);
+    const result = `Erro ao limpar o arquivo de log ${logFilePath}: ${err}`;
+    console.log(result);
+    return "Erro ao limpar o arquivo.";
   }
 }
 

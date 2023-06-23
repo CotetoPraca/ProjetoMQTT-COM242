@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #ced2cc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 2px;
+    }
+  </style>
+  <title>Hello World</title>
+</head>
+<body>
+  <span id="hello"></span>
+
+  <button id="backButton">Voltar</button>
+
+  <script>
+    const token = localStorage.getItem('token');
+    document.getElementById('backButton').addEventListener('click', function() {
+      window.location.href = '/menu?token=' + token;
+    });
+
+    // Faz uma requisição AJAX para obter o resultado da função helloWorld()
+    function fetchHelloWorld() {
+      fetch('/hello-world?token=' + token)
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById("hello").innerHTML = `<p>${result}</p>`;
+        })
+        .catch(error => {
+          console.log('Erro ao chamar o serviço "Hello World":', error);
+        });
+    }
+
+    // Chama a função fetchHelloWorld() ao carregar a página
+    fetchHelloWorld();
+  </script>
+</body>
+</html>
