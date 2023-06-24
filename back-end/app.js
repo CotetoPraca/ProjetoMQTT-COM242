@@ -9,6 +9,8 @@ app.use(express.json());
 // Carrega os serviços manualmente
 const servicesToLoad = [
   require('./service-inventory/auth-services/auth-user'),
+  require('./service-inventory/auth-services/auth-token-generation'),
+  require('./service-inventory/auth-services/auth-token-storage'),
   require('./service-inventory/log-services/log-clear-results'),
   require('./service-inventory/log-services/log-get-results'),
   require('./service-inventory/log-services/log-open-space'),
