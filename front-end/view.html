@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<style>
+  body {
+    background-color: #ced2cc;
+  }
+
+  h1 {
+    font-family: "Boulder", sans-serif;
+  }
+
+  .a {
+    text-align: center;
+  }
+</style>
+
+<head>
+  <title>Resultados</title>
+
+</head>
+
+<body>
+  <div class="a">
+    <h1>Resultados</h1>
+
+    <hr>
+    <span id="view"></span>
+    <script>
+      const token = localStorage.getItem('token');
+      function fetchview() {
+        fetch('/mqtt/history?token=' + token)
+          .then(response => response.text())
+          .then(result => {
+            document.getElementById("view").innerHTML = `<p>${result}</p>`;
+          })
+          .catch(error => {
+            console.log('Erro ao chamar o serviço:', error);
+          });
+      }
+
+      // Chama a função fetchview() ao carregar a página
+      fetchview();
+    </script>
+</body>
+
+</html>
