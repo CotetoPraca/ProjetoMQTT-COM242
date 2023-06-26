@@ -40,8 +40,6 @@
     <button id="serviceButton">Ver tudo</button>
     <button id="hello-world">Hello World</button>
     <button id="clean-logs">Limpar Histórico</button>
-    <button id="history">Resultados</button>
-    <span id="clear"></span>
 
     <script>
       const token = localStorage.getItem('token');
@@ -56,22 +54,6 @@
       document.getElementById('clean-logs').addEventListener('click', function () {
         fetchClearLogs();
       });
-
-      document.getElementById('history').addEventListener('click', function () {
-        window.location.href = '/mqtt/history-page?token=' + token;
-      });
-
-      function fetchClearLogs() {
-        fetch('/mqtt/history-cleanup?token=' + token)
-          .then(response => response.text())
-          .then(result => {
-            document.getElementById("clear").innerHTML = `<p>${result}</p>`;
-          })
-        setTimeout(() => {
-          document.getElementById("clear").innerHTML = '';
-        }, 4200);
-      }
-
 
     </script>
 </body>
