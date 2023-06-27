@@ -21,14 +21,14 @@ const servicesToLoad = [
 
 // Rota para a página de login.
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '../front-end/login.html');
+  res.sendFile(__dirname + './front-end/login.html');
 });
 
 // Rota para a página inicial. Verifica se o usuário está logado.
 app.get('/menu', (req, res) => {
   const token = req.query.token;
   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-    res.sendFile(__dirname + '../front-end/menu.html');
+    res.sendFile(__dirname + './front-end/menu.html');
   } else {
     res.status(401).send('Faça login antes de continuar.');
   }
@@ -56,7 +56,7 @@ app.get('/services', (req, res) => {
 app.get('/hello-world-page', (req, res) => {
   const token = req.query.token;
   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-    res.sendFile(__dirname + '../front-end/helloworld.html');
+    res.sendFile(__dirname + './front-end/helloworld.html');
   } else {
     res.status(401).send('Faça login antes de continuar.');
   }
