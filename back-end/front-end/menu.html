@@ -39,6 +39,7 @@
 
     <button id="serviceButton">Ver tudo</button>
     <button id="hello-world">Hello World</button>
+    <button id="results">Resultados</button>
     <button id="clean-logs">Limpar Histórico</button>
 
     <script>
@@ -49,6 +50,9 @@
       });
       document.getElementById('hello-world').addEventListener('click', function () {
         window.location.href = '/hello-world-page?token=' + token;
+      });
+      document.getElementById('results').addEventListener('click', function () {
+        window.location.href = '/results-page?token=' + token;
       });
 
       document.getElementById('clean-logs').addEventListener('click', function () {

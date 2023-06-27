@@ -21,14 +21,14 @@ const servicesToLoad = [
 
 // Rota para a página de login.
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + './front-end/login.html');
+  res.sendFile(__dirname + '/front-end/login.html');
 });
 
 // Rota para a página inicial. Verifica se o usuário está logado.
 app.get('/menu', (req, res) => {
   const token = req.query.token;
   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-    res.sendFile(__dirname + './front-end/menu.html');
+    res.sendFile(__dirname + '/front-end/menu.html');
   } else {
     res.status(401).send('Faça login antes de continuar.');
   }
@@ -56,7 +56,7 @@ app.get('/services', (req, res) => {
 app.get('/hello-world-page', (req, res) => {
   const token = req.query.token;
   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-    res.sendFile(__dirname + './front-end/helloworld.html');
+    res.sendFile(__dirname + '/front-end/helloworld.html');
   } else {
     res.status(401).send('Faça login antes de continuar.');
   }
@@ -72,6 +72,28 @@ app.get('/hello-world', (req, res) => {
   } else {
     res.status(401).send('Faça login antes de continuar.');
   }
+});
+
+// Rota para exibir os resultados de processamento das mensagens. rota interna
+app.get('/results', (req, res) => {
+  const token = req.query.token;
+  if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
+  logFilePath = 'logs/python-application-logs/teste.txt';
+  const result = inventoryController.getServiceByName('log-get-results').handler(logFilePath);
+  res.send(result);
+} else {
+  res.status(401).send('Faça login antes de continuar.');
+}
+});
+
+//rota para exibir os resultados do processamento das mensagens. rota para o cliente.
+app.get('/results-page', (req, res) => {
+  const token = req.query.token;
+  if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
+    res.sendFile(__dirname + '/front-end/view.html');
+} else {
+  res.status(401).send('Faça login antes de continuar.');
+}
 });
 
 // Rota para autenticar o usuário
