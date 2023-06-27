@@ -11,10 +11,10 @@
     "service",
     "SOA",
     "node",
-    "mqtt",
+    "http",
     "backend"
   ],
-  "author": "Lucas",
+  "author": "Lucas Praça, João Paulo e Luiz Raul",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
