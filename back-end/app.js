@@ -14,8 +14,7 @@ const servicesToLoad = [
   require('./service-inventory/log-services/log-get-results'),
   require('./service-inventory/log-services/log-open-space'),
   require('./service-inventory/log-services/log-save-results'),
-  require('./service-inventory/template-services/hello-world'),
-  require('../front-end/login.html')
+  require('./service-inventory/template-services/hello-world')
 ];
 
 // Rota para a página de login.
@@ -50,40 +49,6 @@ app.get('/services', (req, res) => {
     res.status(401).send('Faça login antes de continuar.');
   }
 });
-
-// Rota para exibir os resultados de processamento das mensagens MQTT. rota interna
-// app.get('/mqtt/history', (req, res) => {
-//   const token = req.query.token;
-//   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-//     logFilePath = '../logs/mqtt-server-logs/mqtt-results.log';
-//     const result = inventoryController.getServiceByName('log-get-results').handler(logFilePath);
-//     res.send(result);
-//   } else {
-//     res.status(401).send('Faça login antes de continuar.');
-//   }
-// });
-
-//rota para exibir os resultados do processamento das mensagens MQTT. rota para o cliente.
-// app.get('/mqtt/history-page', (req, res) => {
-//   const token = req.query.token;
-//   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-//     res.sendFile(__dirname + '../front-end/view.html');
-//   } else {
-//     res.status(401).send('Faça login antes de continuar.');
-//   }
-// });
-
-// Rota para limpar o histórico de resultados
-// app.get('/mqtt/history-cleanup', (req, res) => {
-//   const token = req.query.token;
-//   if (inventoryController.getServiceByName("auth-token-storage").verificarTokenValido(token)) {
-//     logFilePath = '../logs/mqtt-server-logs/mqtt-results.log';
-//     const result = inventoryController.getServiceByName('log-clear-results').handler(logFilePath);
-//     res.send(result);
-//   } else {
-//     res.status(401).send('Faça login antes de continuar.');
-//   }
-// });
 
 // Rota para acessar a página hello-world
 app.get('/hello-world-page', (req, res) => {
