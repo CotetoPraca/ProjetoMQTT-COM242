@@ -12,10 +12,10 @@ const http = require('http');
 // Recebe as informações do sistema Python e a quantidade de logs a serem solicitados
 function solicitarAtualizacaoLogs(sistemaPython, quantidadeLogs) {
   const options = {
-    hostname: sistemaPython.hostname,
-    port: sistemaPython.port,
-    path: `${sistemaPython.path}/logs?quantidade=${quantidadeLogs}`,
-    method: 'GET',
+    hostname: sistemaPython.hostname,  // Endereço IP do servidor
+    port: sistemaPython.port,          // Porta em que o servidor está ouvindo
+    path: `${sistemaPython.path}/logs?quantidade=${quantidadeLogs}`,  // Caminho do endpoint no servidor
+    method: 'GET',                     // Método HTTP a ser usado
   };
 
   const req = http.request(options, (res) => {

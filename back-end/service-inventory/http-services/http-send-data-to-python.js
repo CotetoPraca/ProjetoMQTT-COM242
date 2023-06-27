@@ -13,10 +13,10 @@ const http = require('http');
 // Recebe as informações a serem enviadas como JSON para o Python
 function enviarDadosParaPython(dados, sistemaPython) {
   const options = {
-    hostname: sistemaPython.hostname,
-    port: sistemaPython.port,
-    path: sistemaPython.path,
-    method: 'POST',
+    hostname: sistemaPython.hostname, // Endereço IP do servidor
+    port: sistemaPython.port,         // Porta em que o servidor está ouvindo
+    path: sistemaPython.path,         // Caminho do endpoint no servidor
+    method: 'POST',                   // Método HTTP a ser usado
     headers: {
       'Content-Type': 'application/json',
     },
