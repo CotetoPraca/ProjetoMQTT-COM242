@@ -10,6 +10,8 @@ const servicesToLoad = [
   require('./service-inventory/auth-services/auth-user'),
   require('./service-inventory/auth-services/auth-token-generation'),
   require('./service-inventory/auth-services/auth-token-storage'),
+  require('./service-inventory/http-services/http-send-data-to-python'),
+  require('./service-inventory/http-services/http-update-log-file'),
   require('./service-inventory/log-services/log-clear-results'),
   require('./service-inventory/log-services/log-get-results'),
   require('./service-inventory/log-services/log-open-space'),
