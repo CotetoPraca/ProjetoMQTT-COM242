@@ -6,40 +6,26 @@
  * ao endereço de origem e atualiza o arquivo de logs local.
 **/
 const inventoryController = require('../controllers/inventory-controller');
-const http = require('http');
+const axios = require('axios');
 
 // Função principal do serviço de solicitação de atualização dos logs
 // Recebe as informações do sistema Python, a quantidade de logs a serem solicitados e a tag MQTT
-function solicitarAtualizacaoLogs(sistemaPython, quantidadeLogs, tagMQTT) {
-  const options = {
-    hostname: sistemaPython.hostname,  // Endereço IP do servidor
-    port: sistemaPython.port,          // Porta em que o servidor está ouvindo
-    path: `${sistemaPython.path}/logs?quantidadeLogs=${quantidadeLogs}&tag=${tagMQTT}`,  // Caminho do endpoint no servidor
-    method: 'GET',                     // Método HTTP a ser usado
-  };
+async function solicitarAtualizacaoLogs(sistemaPython, quantidadeLogs, tagMQTT) {
+  const url = `http://${sistemaPython.hostname}:${sistemaPython.port}`; // Constrói a URL com base nas informações do sistema Python
+  const params = {
+    quantidadeLogs: quantidadeLogs,
+    tagMQTT: tagMQTT
+  }; // Define os parâmetros da requisição
 
-  const req = http.request(options, (res) => {
-    let data = '';
-
-    res.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    res.on('end', () => {
-      const logsAtualizados = JSON.parse(data);
-      console.log('Logs atualizados: ', logsAtualizados);
-      salvarLogsLinhaPorLinha(logsAtualizados);
-
-      // Imprime uma mensagem de confirmação de recebimento no console
-      console.log('Atualização dos logs recebida e processada com sucesso');
-    });
-  });
-
-  req.on('error', (error) => {
-    console.error('Erro ao solicitar a atualização dos logs: ', error);
-  });
-
-  req.end();
+  try {
+    const response = await axios.get(url, { params }); // Faz uma requisição GET utilizando o Axios, passando a URL e os parâmetros
+    const logsAtualizados = response.data; // Obtém os dados da resposta
+    console.log('Logs atualizados: ', logsAtualizados); // Exibe os logs atualizados
+    salvarLogsLinhaPorLinha(logsAtualizados); // Chama a função para salvar os logs
+    console.log('Atualização dos logs recebida e processada com sucesso'); // Exibe uma mensagem de confirmação
+  } catch (error) {
+    console.error('Erro ao solicitar a atualização dos logs: ', error); // Exibe o erro, caso ocorra algum problema na requisição
+  }
 }
 
 // Função para salvar os logs linha por linha (uso interno do serviço)

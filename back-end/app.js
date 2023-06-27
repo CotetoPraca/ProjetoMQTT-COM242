@@ -102,7 +102,7 @@ app.post('/http/send-data-to-python', (req, res) => {
   const sistemaPython = {
     hostname: 'localhost', // Substitua pelo endereço correto
     port: 8000, // Substitua pela porta correta
-    path: '/data', // Substitua pelo caminho correto
+    // path: '/data', // Substitua pelo caminho correto
   };
 
   inventoryController.getServiceByName('http-send-data-to-python').handler(dados, sistemaPython);
