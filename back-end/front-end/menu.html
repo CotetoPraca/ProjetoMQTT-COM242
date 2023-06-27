@@ -41,6 +41,22 @@
     <button id="hello-world">Hello World</button>
     <button id="results">Resultados</button>
     <button id="clean-logs">Limpar Histórico</button>
+    <br>
+    <select id = "execute" name = "execute" >
+      <option value = "1100">Travar a porta</option>
+      <option value = "1101">Destravar a porta</option>
+      <option value = "1200">Ligar Sistema de Alarme</option>
+      <option value = "1201">Desligar Sistema de Alarme</option>
+      <option value = "1301">Desliga Sensor de Presença</option>
+      <option value = "1500">Liga/Desliga Luz 1</option>
+      <option value = "1501">Liga/Desliga Luz 2</option>
+      <option value = "1502">Liga/Desliga Luz 3</option>
+      <option value = "1503">Liga/Desliga Luz 4</option>
+      <option value = "1504">Liga/Desliga Luz 5</option>
+      <option value = "1505">Liga todas as luzes</option>
+      <option value = "1506">Desliga todas as luzes</option>
+    </select>
+    <input id="submitBtn" type="submit" value="Enviar" />
 
     <script>
       const token = localStorage.getItem('token');
@@ -57,6 +73,22 @@
 
       document.getElementById('clean-logs').addEventListener('click', function () {
         fetchClearLogs();
+      });
+
+      document.getElementById('submitBtn').addEventListener('click', function () {
+        const selectedOption = document.getElementById('execute').value;
+        const data = { code: selectedOption };
+    
+        fetch('/http/send-data-to-python', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.error(error));
       });
 
     </script>
