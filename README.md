@@ -1,6 +1,10 @@
 # ProjetoMQTT-COM242
 
-O projeto ainda não possui front-end, apenas o back-end
+O front-end do projeto está dentro do back-end. Ia demandar muito tempo para criar um front-end mais elaborado.
+
+## Requisitos
+
+- Ter o Node.js instalado na máquina (https://nodejs.org/)
 
 ## Execução
 
@@ -8,9 +12,3 @@ O projeto ainda não possui front-end, apenas o back-end
 - Abrir o diretório raiz do projeto (back-end)
 - Executar `npm install`
 - Executar `node app.js`
-
-## Enviando mensagem MQTT
-
-Utilizei o aplicativo MQTT Explorer para testar. A porta configurada na aplicação para o servidor MQTT é 1833
-
-A lista de tópicos com serviços relacionados está no arquivo `/mqtt-server/mqtt-server.js`
