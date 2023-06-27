@@ -9,12 +9,12 @@ const inventoryController = require('../controllers/inventory-controller');
 const http = require('http');
 
 // Função principal do serviço de solicitação de atualização dos logs
-// Recebe as informações do sistema Python e a quantidade de logs a serem solicitados
-function solicitarAtualizacaoLogs(sistemaPython, quantidadeLogs) {
+// Recebe as informações do sistema Python, a quantidade de logs a serem solicitados e a tag MQTT
+function solicitarAtualizacaoLogs(sistemaPython, quantidadeLogs, tagMQTT) {
   const options = {
     hostname: sistemaPython.hostname,  // Endereço IP do servidor
     port: sistemaPython.port,          // Porta em que o servidor está ouvindo
-    path: `${sistemaPython.path}/logs?quantidade=${quantidadeLogs}`,  // Caminho do endpoint no servidor
+    path: `${sistemaPython.path}/logs?quantidadeLogs=${quantidadeLogs}&tag=${tagMQTT}`,  // Caminho do endpoint no servidor
     method: 'GET',                     // Método HTTP a ser usado
   };
 
@@ -47,7 +47,7 @@ function salvarLogsLinhaPorLinha(logs) {
   const logFilePath = "../../logs/python-application-logs/python-application.log"; // Caminho padrão do arquivo de logs
 
   logs.forEach((log) => {
-    const logLine = `${log.timestamp} - ${log.message}`;
+    const logLine = `${log.timestamp} - ${log.tagMQTT} - ${log.message}`;
     inventoryController.getServiceByName("log-save-results").handler(logFilePath, logLine);
   });
 }
