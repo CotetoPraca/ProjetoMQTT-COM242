@@ -40,13 +40,15 @@
     <button id="serviceButton">Ver tudo</button>
     <button id="hello-world">Hello World</button>
     <button id="results">Resultados</button>
-    <button id="clean-logs">Limpar Histórico</button>
+    <button id="call-logs">Chamar serviço</button>
     <br>
+    <h3>Execute ações: </h3>
     <select id = "execute" name = "execute" >
       <option value = "1100">Travar a porta</option>
       <option value = "1101">Destravar a porta</option>
       <option value = "1200">Ligar Sistema de Alarme</option>
       <option value = "1201">Desligar Sistema de Alarme</option>
+      <option value = "1300">Liga Sensor de Presença</option>
       <option value = "1301">Desliga Sensor de Presença</option>
       <option value = "1500">Liga/Desliga Luz 1</option>
       <option value = "1501">Liga/Desliga Luz 2</option>
@@ -71,8 +73,16 @@
         window.location.href = '/results-page?token=' + token;
       });
 
-      document.getElementById('clean-logs').addEventListener('click', function () {
-        fetchClearLogs();
+      document.getElementById('call-logs').addEventListener('click', function () {
+        fetch('/http/send-data-to-python', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.error(error));
       });
 
       document.getElementById('submitBtn').addEventListener('click', function () {
